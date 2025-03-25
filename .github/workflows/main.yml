@@ -25,3 +25,12 @@ jobs:
 
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+
+    - name: Publish artifacts
+      run: dotnet publish --configuration Release --output ./publish
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: published-artifacts
+        path: ./publish
